@@ -259,6 +259,40 @@
         "https://huggingface.co/Hcompany/Holo-3.1-35B-A3B"
       ],
       "verified_on": "2026-07-23"
+    },
+    {
+      "id": "nanbeige-nanbeige4.2-3b",
+      "name": "Nanbeige4.2-3B",
+      "organization": "Nanbeige LLM Lab",
+      "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B",
+      "availability": "open weights",
+      "license": "Apache-2.0",
+      "architecture": "Looped Transformer",
+      "parameters_total_b": 4,
+      "parameters_non_embedding_b": 3,
+      "context_tokens": 262144,
+      "languages": ["Chinese", "English"],
+      "focus": ["local personal assistant", "general agents", "tool use", "office workflows", "code agents", "deep research"],
+      "features": ["layer reuse through Looped Transformer", "LoopSplit", "mHC with depth attention", "concatenated n-gram embeddings", "thinking preservation control", "XML and JSON tool calls"],
+      "benchmarks": [
+        {"name": "GDPval rubrics", "score": 74.3, "unit": "points", "details": "Office and co-work tasks evaluated with author in-house scaffold", "reported_by": "model author"},
+        {"name": "Agent-IF-Oneday", "score": 67.5, "unit": "points", "reported_by": "model author"},
+        {"name": "Pinch-Bench-V2", "score": 74.7, "unit": "points", "reported_by": "model author"},
+        {"name": "Claw-Gym", "score": 65.0, "unit": "points", "reported_by": "model author"},
+        {"name": "Claw-Eval pass", "score": 52.2, "unit": "points", "reported_by": "model author"},
+        {"name": "MCP-Atlas", "score": 57.8, "unit": "points", "reported_by": "model author"},
+        {"name": "SWE-bench Verified", "score": 63.6, "unit": "points", "details": "OpenHands scaffold", "reported_by": "model author"},
+        {"name": "SWE-bench Pro", "score": 46.9, "unit": "points", "details": "SWE-agent scaffold", "reported_by": "model author"},
+        {"name": "Terminal-Bench 2.0", "score": 44.1, "unit": "points", "details": "Terminus 2 scaffold", "reported_by": "model author"},
+        {"name": "DeepResearch Bench II", "score": 33.4, "unit": "points", "details": "OpenClaw local personal-assistant evaluation", "reported_by": "model author"},
+        {"name": "ResearchRubrics", "score": 44.8, "unit": "points", "details": "OpenClaw local personal-assistant evaluation", "reported_by": "model author"}
+      ],
+      "evaluation_notes": "The primary model-card table uses thinking mode with preserve_thinking=true. Office and co-work tasks use the author's in-house scaffold.",
+      "sources": [
+        "https://huggingface.co/Nanbeige/Nanbeige4.2-3B",
+        "https://huggingface.co/Nanbeige/Nanbeige4.2-3B-Base"
+      ],
+      "verified_on": "2026-07-23"
     }
   ]
 }

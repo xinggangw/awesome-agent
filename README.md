@@ -19,6 +19,7 @@
 | [Solar Open 2](https://huggingface.co/upstage/Solar-Open2-250B) | 开放权重；Upstage Solar License | 250B MoE / 15B active | 1,000,000 | 长程 Agent、办公、文档与代码任务 | SWE-bench Verified 70.4；LiveCodeBench v6 92.4；IFBench 80.0；Ko-GDPval 86.8 |
 | [Macaron-V1](https://macaron.im/mindlab/research/introducing-macaron-v1) | 开放权重；许可证以模型仓库为准 | Venti 748B；Tall 50B | 未在本页统一列示 | 通用 Agent、个人智能、代码、生成式 UI | Venti：SWE Verified 85.6；TerminalBench 2.1 87.6；DeepSWE 58.4；UI4ABench 87.8 |
 | [Holo3.1](https://hcompany.ai/holo3.1) | 开放权重；Apache-2.0 | 0.8B / 4B / 9B / 35B-A3B | 未在本页统一列示 | Web、桌面与移动端 Computer Use | 35B-A3B：OSWorld 80.0；AndroidWorld 79.3；ScreenSpot-Pro 71.5；OSWorld-G 78.8 |
+| [Nanbeige4.2-3B](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) | 开放权重；Apache-2.0 | 4B total / 3B non-embedding | 262,144 | 本地个人助理、工具调用、办公与代码 Agent | SWE-bench Verified 63.6；Pro 46.9；Terminal-Bench 2.0 44.1；Pinch-Bench-V2 74.7 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -161,6 +162,30 @@ H Company 发布的 Computer Use VLM 家族，基于 Qwen 3.5 系列，覆盖 We
 官方的 Overall Performance 先对四项 H Corporate 内部任务取平均，再与 OSWorld、AndroidWorld、ScreenSpot-Pro 和 OSWorld-G 一起求均值，因此不是独立榜单成绩。量化方面，项目方报告 FP8 与 NVFP4 的 OSWorld 分数相同，较 BF16 低约 2 分；DGX Spark 上 NVFP4 W4A16 的总 token throughput 是 FP8 的 1.41 倍、BF16 的 1.74 倍。结合 harness 优化后，平均操作步骤耗时从 6.8 秒降至 3.3 秒。
 
 来源：[发布页面](https://hcompany.ai/holo3.1) · [模型集合](https://huggingface.co/collections/Hcompany/holo31) · [35B-A3B 模型卡](https://huggingface.co/Hcompany/Holo-3.1-35B-A3B)
+
+### Nanbeige4.2-3B
+
+南北阁发布的中英双语小型 Agent 模型，基于 Nanbeige4.2-3B-Base，模型卡标注约 4B 总参数、3B non-embedding 参数和 262,144-token 上下文。模型采用 Looped Transformer，通过重复使用 Transformer 层增加有效计算深度，而不按循环次数增加参数量；架构还包含 LoopSplit、带 depth attention 的 mHC 和拼接式 n-gram embedding。
+
+训练分为监督微调和强化学习。监督数据同时来自真实工具集成与大规模环境合成，并通过测试执行和 rubric 评估筛选轨迹；强化学习同时使用结果奖励和过程奖励。模型支持 XML 与 JSON 两种工具调用格式，其中模型卡优先推荐 XML。`preserve_thinking=true` 适用于多轮工具调用、办公和代码 Agent；普通聊天与问答则建议关闭。
+
+| Benchmark | Score | 评测配置摘要 |
+|---|---:|---|
+| GDPval rubrics | 74.3 | 办公与协作任务；项目方自建 scaffold |
+| Agent-IF-Oneday | 67.5 | 项目方报告 |
+| Pinch-Bench-V2 | 74.7 | 项目方报告 |
+| Claw-Gym | 65.0 | 项目方报告 |
+| Claw-Eval pass | 52.2 | 项目方报告 |
+| MCP-Atlas | 57.8 | 项目方报告 |
+| SWE-bench Verified | 63.6 | OpenHands scaffold |
+| SWE-bench Pro | 46.9 | SWE-agent scaffold |
+| Terminal-Bench 2.0 | 44.1 | Terminus 2 scaffold |
+| DeepResearch Bench II | 33.4 | OpenClaw 本地个人助理评测 |
+| ResearchRubrics | 44.8 | OpenClaw 本地个人助理评测 |
+
+上述成绩均为项目方模型卡报告。主评测表统一启用 thinking mode，并设置 `preserve_thinking=true`；不同 scaffold 下的数字不宜直接横向比较。官方给出 Transformers、SGLang、vLLM、llama.cpp、Ollama 和 GGUF 等部署方式。
+
+来源：[模型卡](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) · [基础模型](https://huggingface.co/Nanbeige/Nanbeige4.2-3B-Base)
 
 ## 收录原则
 
