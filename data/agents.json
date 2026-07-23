@@ -136,6 +136,36 @@
         "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B"
       ],
       "verified_on": "2026-07-23"
+    },
+    {
+      "id": "upstage-solar-open2-250b",
+      "name": "Solar Open 2",
+      "organization": "Upstage",
+      "url": "https://huggingface.co/upstage/Solar-Open2-250B",
+      "availability": "open weights",
+      "license": "Upstage Solar License",
+      "license_note": "Commercial use is permitted. Derivative AI models have naming, attribution, and license-notice requirements.",
+      "architecture": "Hybrid-Attention Mixture-of-Experts",
+      "parameters_total_b": 250,
+      "parameters_active_b": 15,
+      "context_tokens": 1000000,
+      "languages": ["English", "Korean", "Japanese"],
+      "focus": ["long-horizon agents", "tool use", "coding", "office productivity", "document-intensive work"],
+      "features": ["three linear-attention layers per softmax-attention layer", "NoPE", "320 routed experts plus one shared expert", "top-8 routed experts per token", "multi-teacher on-policy distillation", "selective weight transfer"],
+      "benchmarks": [
+        {"name": "SWE-bench Verified", "score": 70.4, "unit": "points", "reported_by": "model author"},
+        {"name": "LiveCodeBench v6", "score": 92.4, "unit": "points", "reported_by": "model author"},
+        {"name": "IFBench", "score": 80.0, "unit": "points", "reported_by": "model author"},
+        {"name": "MMLU-Pro", "score": 86.2, "unit": "points", "reported_by": "model author"},
+        {"name": "GPQA-Diamond", "score": 86.3, "unit": "points", "reported_by": "model author"},
+        {"name": "Ko-GDPval", "score": 86.8, "unit": "points", "details": "Upstage in-house Korean officework-agent benchmark", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://huggingface.co/upstage/Solar-Open2-250B",
+        "https://arxiv.org/abs/2607.20062",
+        "https://www.upstage.ai/blog/en/solar-open-2"
+      ],
+      "verified_on": "2026-07-23"
     }
   ]
 }

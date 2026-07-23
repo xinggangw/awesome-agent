@@ -16,6 +16,7 @@
 | [BTL-3](https://github.com/Badtheorylabs/BTL-3) | 开源代码；Apache-2.0 模型 | 27B；Rank-32 PEFT adapter | 262,144 架构上限 | 代码生成、结构化工具调用、本地推理 | HumanEval 95.12；BFCL v4 AST 88.5；LiveCodeBench v6 88.1 |
 | [Agents-A1](https://huggingface.co/InternScience/Agents-A1) | 开放权重；许可证以模型仓库为准 | 35B MoE / 3B active | 未在本页统一列示 | 长程搜索、工程、科学研究、工具调用 | Seal-0 56.36；GAIA 96.04；FrontierScience-Research 40.0；IFBench 80.61 |
 | [Ornith 1.0 9B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B) | 开放权重；MIT | 9B dense | 262,144（推荐服务配置） | 单 GPU agentic coding、自改进 RL | Terminal-Bench 2.1 43.1；SWE-bench Verified 69.4；Pro 42.9；NL2Repo 27.2 |
+| [Solar Open 2](https://huggingface.co/upstage/Solar-Open2-250B) | 开放权重；Upstage Solar License | 250B MoE / 15B active | 1,000,000 | 长程 Agent、办公、文档与代码任务 | SWE-bench Verified 70.4；LiveCodeBench v6 92.4；IFBench 80.0；Ko-GDPval 86.8 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -96,6 +97,23 @@ DeepReinforce 面向单 GPU 部署发布的 9B dense agentic coding 模型。项
 | Claw-eval Avg | 63.1 | 256K context |
 
 来源：[模型卡](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B)
+
+### Solar Open 2
+
+Upstage 发布的 250B-A15B 开放权重 MoE 模型，面向工具调用、代码和办公文档等长程 Agent 任务。模型共有 48 层，按 1 层 softmax attention、3 层 linear attention 的方式交错排列，不使用位置编码；只有 12 层保留 KV cache，因此能以较低的长上下文内存开销支持 1M-token 窗口。FFN 包含 320 个 routed experts 和 1 个 shared expert，每个 token 选择 8 个 routed experts。官方支持英语、韩语和日语。
+
+| Benchmark | Score | 方向 |
+|---|---:|---|
+| SWE-bench Verified | 70.4 | Agentic coding |
+| LiveCodeBench v6 | 92.4 | 代码 |
+| IFBench | 80.0 | 指令遵循 |
+| MMLU-Pro | 86.2 | 知识与推理 |
+| GPQA-Diamond | 86.3 | 知识与推理 |
+| Ko-GDPval | 86.8 | 韩语办公 Agent；项目方自建评测 |
+
+技术报告还报告 Solar Open 2 在 APEX-Agents 套件中领先同规模开放权重对比模型。Ko-GDPval 属于 Upstage 自建的交付物型办公任务评测，不应与独立公共榜单等同看待。BF16 推荐使用 4 张 NVIDIA H200；官方量化版本可缩减到 2 张 H200。Upstage Solar License 允许商业使用和衍生模型开发，但对衍生模型名称、归属标识和许可证附带方式另有要求。
+
+来源：[模型卡](https://huggingface.co/upstage/Solar-Open2-250B) · [技术报告](https://arxiv.org/abs/2607.20062) · [发布文章](https://www.upstage.ai/blog/en/solar-open-2)
 
 ## 收录原则
 
