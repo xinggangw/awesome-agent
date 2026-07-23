@@ -18,6 +18,7 @@
 | [Ornith 1.0 9B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B) | 开放权重；MIT | 9B dense | 262,144（推荐服务配置） | 单 GPU agentic coding、自改进 RL | Terminal-Bench 2.1 43.1；SWE-bench Verified 69.4；Pro 42.9；NL2Repo 27.2 |
 | [Solar Open 2](https://huggingface.co/upstage/Solar-Open2-250B) | 开放权重；Upstage Solar License | 250B MoE / 15B active | 1,000,000 | 长程 Agent、办公、文档与代码任务 | SWE-bench Verified 70.4；LiveCodeBench v6 92.4；IFBench 80.0；Ko-GDPval 86.8 |
 | [Macaron-V1](https://macaron.im/mindlab/research/introducing-macaron-v1) | 开放权重；许可证以模型仓库为准 | Venti 748B；Tall 50B | 未在本页统一列示 | 通用 Agent、个人智能、代码、生成式 UI | Venti：SWE Verified 85.6；TerminalBench 2.1 87.6；DeepSWE 58.4；UI4ABench 87.8 |
+| [Holo3.1](https://hcompany.ai/holo3.1) | 开放权重；Apache-2.0 | 0.8B / 4B / 9B / 35B-A3B | 未在本页统一列示 | Web、桌面与移动端 Computer Use | 35B-A3B：OSWorld 80.0；AndroidWorld 79.3；ScreenSpot-Pro 71.5；OSWorld-G 78.8 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -138,6 +139,28 @@ Mind Lab 发布的 Mixture-of-LoRA（MoL）Agent 模型系列。旗舰版 Macaro
 模型与 harness 一并设计：UI4A 负责生成可交互界面，REPL harness 使用持久 Python namespace 组合和复用已验证工具，Harness Context Protocol（HCP）统一训练与服务阶段的 Agent 配置。LongStraw 用 resident state 和 response replay 降低长上下文强化学习的内存压力；项目方报告其可在 32×H20 上完成 GLM-5.2 的 2.1M-token 训练。Venti、Coding-Venti 和 Tall 均已在 Hugging Face Collection 发布开放权重。当前研究页未明确给出统一的模型许可证名称，实际使用应以各模型仓库中的许可证文件和基座模型条款为准。
 
 来源：[研究页面](https://macaron.im/mindlab/research/introducing-macaron-v1) · [模型集合](https://huggingface.co/collections/mindlab-research/macaron-v1) · [Venti 权重](https://huggingface.co/mindlab-research/Macaron-V1-Venti) · [Tall 权重](https://huggingface.co/mindlab-research/Macaron-V1-Tall)
+
+### Holo3.1
+
+H Company 发布的 Computer Use VLM 家族，基于 Qwen 3.5 系列，覆盖 Web、桌面和移动端 GUI。模型提供 0.8B、4B、9B 和 35B-A3B 四种规格，同时支持结构化 JSON 输出和原生 function calling。35B-A3B 另有 BF16、FP8、NVFP4 与 Q4 GGUF 权重，面向云端、工作站和消费级设备上的本地部署。
+
+以下结果对应 35B-A3B：
+
+| Benchmark | Score | 说明 |
+|---|---:|---|
+| Overall Performance | 78.3% | 项目方组合指标；包含公共和内部评测 |
+| OSWorld | 80.0% | H Company 的内部 benchmark implementation |
+| AndroidWorld | 79.3% | 移动端操作 |
+| ScreenSpot-Pro | 71.5% | UI grounding |
+| OSWorld-G | 78.8% | UI grounding |
+| H Corporate — E-Commerce | 97.8% | 项目方内部评测 |
+| H Corporate — Business Software | 90.1% | 项目方内部评测 |
+| H Corporate — Collaboration | 75.3% | 项目方内部评测 |
+| H Corporate — Multi-Apps | 65.5% | 项目方内部评测 |
+
+官方的 Overall Performance 先对四项 H Corporate 内部任务取平均，再与 OSWorld、AndroidWorld、ScreenSpot-Pro 和 OSWorld-G 一起求均值，因此不是独立榜单成绩。量化方面，项目方报告 FP8 与 NVFP4 的 OSWorld 分数相同，较 BF16 低约 2 分；DGX Spark 上 NVFP4 W4A16 的总 token throughput 是 FP8 的 1.41 倍、BF16 的 1.74 倍。结合 harness 优化后，平均操作步骤耗时从 6.8 秒降至 3.3 秒。
+
+来源：[发布页面](https://hcompany.ai/holo3.1) · [模型集合](https://huggingface.co/collections/Hcompany/holo31) · [35B-A3B 模型卡](https://huggingface.co/Hcompany/Holo-3.1-35B-A3B)
 
 ## 收录原则
 

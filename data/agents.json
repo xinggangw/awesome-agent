@@ -217,6 +217,48 @@
         "https://huggingface.co/mindlab-research/Macaron-V1-Tall"
       ],
       "verified_on": "2026-07-23"
+    },
+    {
+      "id": "hcompany-holo-3.1",
+      "name": "Holo3.1",
+      "organization": "H Company",
+      "url": "https://hcompany.ai/holo3.1",
+      "availability": "open weights",
+      "license": "Apache-2.0",
+      "architecture": "Qwen 3.5-based Vision-Language Models for computer use",
+      "variants": [
+        {"name": "Holo-3.1-0.8B", "nominal_size_b": 0.8, "url": "https://huggingface.co/Hcompany/Holo-3.1-0.8B"},
+        {"name": "Holo-3.1-4B", "nominal_size_b": 4, "url": "https://huggingface.co/Hcompany/Holo-3.1-4B"},
+        {"name": "Holo-3.1-9B", "nominal_size_b": 9, "url": "https://huggingface.co/Hcompany/Holo-3.1-9B"},
+        {"name": "Holo-3.1-35B-A3B", "parameters_total_b": 35, "parameters_active_b": 3, "url": "https://huggingface.co/Hcompany/Holo-3.1-35B-A3B"}
+      ],
+      "focus": ["computer use", "GUI agents", "web automation", "desktop automation", "mobile automation", "UI grounding"],
+      "features": ["native function calling", "structured JSON actions", "image-text-to-text", "FP8 quantization", "NVFP4 W4A16 quantization", "Q4 GGUF"],
+      "benchmark_variant": "Holo-3.1-35B-A3B",
+      "benchmarks": [
+        {"name": "Overall Performance", "score": 78.3, "unit": "percent", "details": "Author-defined composite mixing public and internal benchmarks", "reported_by": "model author"},
+        {"name": "OSWorld", "score": 80.0, "unit": "percent", "details": "H Company internal implementation of the benchmark", "reported_by": "model author"},
+        {"name": "AndroidWorld", "score": 79.3, "unit": "percent", "reported_by": "model author"},
+        {"name": "ScreenSpot-Pro", "score": 71.5, "unit": "percent", "reported_by": "model author"},
+        {"name": "OSWorld-G", "score": 78.8, "unit": "percent", "reported_by": "model author"},
+        {"name": "H Corporate — E-Commerce", "score": 97.8, "unit": "percent", "details": "H Company internal benchmark", "reported_by": "model author"},
+        {"name": "H Corporate — Business Software", "score": 90.1, "unit": "percent", "details": "H Company internal benchmark", "reported_by": "model author"},
+        {"name": "H Corporate — Collaboration", "score": 75.3, "unit": "percent", "details": "H Company internal benchmark", "reported_by": "model author"},
+        {"name": "H Corporate — Multi-Apps", "score": 65.5, "unit": "percent", "details": "H Company internal benchmark", "reported_by": "model author"}
+      ],
+      "deployment_notes": {
+        "quantized_35b_formats": ["FP8", "NVFP4 W4A16", "Q4 GGUF"],
+        "dgx_spark_nvfp4_throughput_vs_fp8": 1.41,
+        "dgx_spark_nvfp4_throughput_vs_bf16": 1.74,
+        "optimized_average_step_time_seconds": 3.3,
+        "fp8_baseline_average_step_time_seconds": 6.8
+      },
+      "sources": [
+        "https://hcompany.ai/holo3.1",
+        "https://huggingface.co/collections/Hcompany/holo31",
+        "https://huggingface.co/Hcompany/Holo-3.1-35B-A3B"
+      ],
+      "verified_on": "2026-07-23"
     }
   ]
 }
