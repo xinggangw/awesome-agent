@@ -17,6 +17,7 @@
 | [Agents-A1](https://huggingface.co/InternScience/Agents-A1) | 开放权重；许可证以模型仓库为准 | 35B MoE / 3B active | 未在本页统一列示 | 长程搜索、工程、科学研究、工具调用 | Seal-0 56.36；GAIA 96.04；FrontierScience-Research 40.0；IFBench 80.61 |
 | [Ornith 1.0 9B](https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B) | 开放权重；MIT | 9B dense | 262,144（推荐服务配置） | 单 GPU agentic coding、自改进 RL | Terminal-Bench 2.1 43.1；SWE-bench Verified 69.4；Pro 42.9；NL2Repo 27.2 |
 | [Solar Open 2](https://huggingface.co/upstage/Solar-Open2-250B) | 开放权重；Upstage Solar License | 250B MoE / 15B active | 1,000,000 | 长程 Agent、办公、文档与代码任务 | SWE-bench Verified 70.4；LiveCodeBench v6 92.4；IFBench 80.0；Ko-GDPval 86.8 |
+| [Macaron-V1](https://macaron.im/mindlab/research/introducing-macaron-v1) | 开放权重；许可证以模型仓库为准 | Venti 748B；Tall 50B | 未在本页统一列示 | 通用 Agent、个人智能、代码、生成式 UI | Venti：SWE Verified 85.6；TerminalBench 2.1 87.6；DeepSWE 58.4；UI4ABench 87.8 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -114,6 +115,29 @@ Upstage 发布的 250B-A15B 开放权重 MoE 模型，面向工具调用、代�
 技术报告还报告 Solar Open 2 在 APEX-Agents 套件中领先同规模开放权重对比模型。Ko-GDPval 属于 Upstage 自建的交付物型办公任务评测，不应与独立公共榜单等同看待。BF16 推荐使用 4 张 NVIDIA H200；官方量化版本可缩减到 2 张 H200。Upstage Solar License 允许商业使用和衍生模型开发，但对衍生模型名称、归属标识和许可证附带方式另有要求。
 
 来源：[模型卡](https://huggingface.co/upstage/Solar-Open2-250B) · [技术报告](https://arxiv.org/abs/2607.20062) · [发布文章](https://www.upstage.ai/blog/en/solar-open-2)
+
+### Macaron-V1
+
+Mind Lab 发布的 Mixture-of-LoRA（MoL）Agent 模型系列。旗舰版 Macaron-V1-Venti 在冻结的 744B GLM-5.2 基座上配置 4 个约 1B 参数的 LoRA specialists，分别负责对话与指令遵循、通用 Agent、代码和生成式 UI，总规模约 748B。Macaron-V1-Tall 面向本地部署，使用 35B Qwen 3.6 基座和 4 个约 3.7B 的 LoRA specialists，总规模约 50B。运行时先由 L0 Chat 选择 specialist，后续推理和工具调用留在选中的 LoRA 上下文中；不同 specialist 通过简短总结交换已完成工作。
+
+以下成绩均来自项目方发布图表，对应 Venti，不代表 Tall：
+
+| Benchmark | Score | 方向 |
+|---|---:|---|
+| Macaron ChatBench | 58.3 | 长程对话诚实性；项目方自建评测 |
+| Macaron LivingBench | 64.0 | 跨周个人生活 Agent；项目方自建评测 |
+| VitaBench | 60.0 | 个人生活 Agent |
+| PinchBench | 94.0 | Agent |
+| ClawGym | 77.7 | Agent |
+| SWE Verified | 85.6 | Agentic coding |
+| TerminalBench 2.1 | 87.6 | 终端任务 |
+| DeepSWE | 58.4 | 代码 |
+| SWE Atlas QnA | 49.5 | 代码库问答 |
+| UI4ABench | 87.8 | 生成式 UI |
+
+模型与 harness 一并设计：UI4A 负责生成可交互界面，REPL harness 使用持久 Python namespace 组合和复用已验证工具，Harness Context Protocol（HCP）统一训练与服务阶段的 Agent 配置。LongStraw 用 resident state 和 response replay 降低长上下文强化学习的内存压力；项目方报告其可在 32×H20 上完成 GLM-5.2 的 2.1M-token 训练。Venti、Coding-Venti 和 Tall 均已在 Hugging Face Collection 发布开放权重。当前研究页未明确给出统一的模型许可证名称，实际使用应以各模型仓库中的许可证文件和基座模型条款为准。
+
+来源：[研究页面](https://macaron.im/mindlab/research/introducing-macaron-v1) · [模型集合](https://huggingface.co/collections/mindlab-research/macaron-v1) · [Venti 权重](https://huggingface.co/mindlab-research/Macaron-V1-Venti) · [Tall 权重](https://huggingface.co/mindlab-research/Macaron-V1-Tall)
 
 ## 收录原则
 
