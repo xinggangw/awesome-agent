@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "last_verified": "2026-07-23",
+  "score_policy": "Scores are author-reported unless verification is explicitly stated. Harnesses and settings may differ.",
+  "agents": [
+    {
+      "id": "poolside-laguna-xs-2.1",
+      "name": "Laguna XS 2.1",
+      "organization": "poolside",
+      "url": "https://huggingface.co/poolside/Laguna-XS-2.1",
+      "availability": "open weights",
+      "license": "OpenMDW-1.1",
+      "architecture": "Mixture-of-Experts",
+      "parameters_total_b": 33,
+      "parameters_active_b": 3,
+      "focus": ["agentic coding", "tool use", "local inference", "long-horizon work"],
+      "features": ["mixed sliding-window and global attention", "FP8 KV cache", "interleaved reasoning", "controllable thinking", "quantized variants"],
+      "benchmarks": [
+        {"name": "SWE-bench Verified", "score": 70.9, "unit": "percent", "reported_by": "model author"},
+        {"name": "SWE-bench Multilingual", "score": 63.1, "unit": "percent", "reported_by": "model author"},
+        {"name": "SWE-bench Pro (Public Dataset)", "score": 47.6, "unit": "percent", "reported_by": "model author"},
+        {"name": "Terminal-Bench 2.0", "score": 37.5, "unit": "percent", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://huggingface.co/poolside/Laguna-XS-2.1",
+        "https://poolside.ai/blog/introducing-laguna-xs-2-1",
+        "https://poolside.ai/assets/laguna/laguna-m1-xs2-technical-report.pdf"
+      ],
+      "verified_on": "2026-07-23"
+    },
+    {
+      "id": "poolside-laguna-s-2.1",
+      "name": "Laguna S 2.1",
+      "organization": "poolside",
+      "url": "https://huggingface.co/poolside/Laguna-S-2.1",
+      "availability": "open weights",
+      "license": "OpenMDW-1.1",
+      "architecture": "Mixture-of-Experts",
+      "parameters_total_b": 118,
+      "parameters_active_b": 8,
+      "context_tokens": 1048576,
+      "focus": ["agentic coding", "tool use", "long-horizon work"],
+      "features": ["256 routed experts plus one shared expert", "grouped-query attention", "mixed sliding-window and global attention", "interleaved reasoning", "DFlash speculative decoding"],
+      "benchmarks": [
+        {"name": "Terminal-Bench 2.1", "score": 70.2, "unit": "percent", "reported_by": "model author"},
+        {"name": "SWE-bench Multilingual", "score": 78.5, "unit": "percent", "reported_by": "model author"},
+        {"name": "SWE-bench Pro (Public Dataset)", "score": 59.4, "unit": "percent", "reported_by": "model author"},
+        {"name": "DeepSWE", "score": 40.4, "unit": "percent", "reported_by": "model author"},
+        {"name": "SWE Atlas (Codebase QnA)", "score": 46.2, "unit": "percent", "reported_by": "model author"},
+        {"name": "Toolathlon Verified", "score": 49.7, "unit": "percent", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://huggingface.co/poolside/Laguna-S-2.1",
+        "https://trajectories.poolside.ai/"
+      ],
+      "verified_on": "2026-07-23"
+    },
+    {
+      "id": "badtheorylabs-btl-3",
+      "name": "BTL-3",
+      "organization": "Bad Theory Labs",
+      "url": "https://github.com/Badtheorylabs/BTL-3",
+      "availability": "open model adapter and open-source runtime",
+      "license": "Apache-2.0 model; MIT runtime",
+      "architecture": "Qwen3.6-27B hybrid-attention causal LM with Rank-32 PEFT adapter",
+      "parameters_total_b": 27,
+      "context_tokens": 262144,
+      "focus": ["agentic coding", "structured tool use", "local inference"],
+      "features": ["thinking-mode generation", "parallel tool calls", "tool abstention", "failure recovery", "standalone compact GGUF variant"],
+      "benchmarks": [
+        {"name": "HumanEval", "score": 95.12, "unit": "percent", "details": "156/164, pass@1, thinking mode", "reported_by": "model author"},
+        {"name": "BFCL v4 AST", "score": 88.5, "unit": "percent", "details": "1097/1240, complete official full set", "reported_by": "model author"},
+        {"name": "LiveCodeBench v6", "score": 88.1, "unit": "percent", "details": "170/193, thinking mode", "reported_by": "model author"},
+        {"name": "BigCodeBench-Hard Instruct", "score": 26.35, "unit": "percent", "details": "39/148, strict pass@1", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://github.com/Badtheorylabs/BTL-3",
+        "https://huggingface.co/badtheorylabs/BTL-3",
+        "https://huggingface.co/badtheorylabs/BTL-3-Compact"
+      ],
+      "verified_on": "2026-07-23"
+    },
+    {
+      "id": "internscience-agents-a1",
+      "name": "Agents-A1",
+      "organization": "InternScience",
+      "url": "https://huggingface.co/InternScience/Agents-A1",
+      "availability": "open weights",
+      "license": "See upstream model repository",
+      "architecture": "Mixture-of-Experts",
+      "parameters_total_b": 35,
+      "parameters_active_b": 3,
+      "focus": ["long-horizon search", "engineering", "scientific research", "instruction following", "tool use"],
+      "features": ["long-horizon trajectory scaling", "heterogeneous agent abilities", "native function calling", "open evaluation code for selected domains"],
+      "benchmarks": [
+        {"name": "BrowseComp", "score": 75.51, "unit": "points", "reported_by": "model author"},
+        {"name": "XBench-DS-2510", "score": 86.0, "unit": "points", "reported_by": "model author"},
+        {"name": "Seal-0", "score": 56.36, "unit": "points", "reported_by": "model author"},
+        {"name": "GAIA", "score": 96.04, "unit": "points", "reported_by": "model author"},
+        {"name": "SciCode", "score": 44.33, "unit": "points", "reported_by": "model author"},
+        {"name": "FrontierScience-Olympiad", "score": 79.0, "unit": "points", "reported_by": "model author"},
+        {"name": "FrontierScience-Research", "score": 40.0, "unit": "points", "reported_by": "model author"},
+        {"name": "IFBench", "score": 80.61, "unit": "points", "reported_by": "model author"},
+        {"name": "IFEval", "score": 94.82, "unit": "points", "reported_by": "model author"},
+        {"name": "MolBench-bind", "score": 56.8, "unit": "points", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://huggingface.co/InternScience/Agents-A1",
+        "https://arxiv.org/abs/2606.30616"
+      ],
+      "verified_on": "2026-07-23"
+    },
+    {
+      "id": "deepreinforce-ornith-1.0-9b",
+      "name": "Ornith 1.0 9B",
+      "organization": "DeepReinforce",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B",
+      "availability": "open weights",
+      "license": "MIT",
+      "architecture": "Dense",
+      "parameters_total_b": 9,
+      "context_tokens": 262144,
+      "context_note": "Recommended vLLM/SGLang serving configuration on the model card",
+      "focus": ["agentic coding", "tool use", "single-GPU deployment"],
+      "features": ["self-improving RL for scaffold and rollout", "reasoning parser", "structured tool calls", "OpenAI-compatible serving"],
+      "benchmarks": [
+        {"name": "Terminal-Bench 2.1 (Terminus-2)", "score": 43.1, "unit": "points", "details": "5-run average, 128K context", "reported_by": "model author"},
+        {"name": "Terminal-Bench 2.1 (Claude Code)", "score": 40.6, "unit": "points", "details": "5-run average, Claude Code 2.1.126", "reported_by": "model author"},
+        {"name": "SWE-bench Verified", "score": 69.4, "unit": "points", "details": "OpenHands, 256K context", "reported_by": "model author"},
+        {"name": "SWE-bench Pro", "score": 42.9, "unit": "points", "details": "OpenHands, 256K context", "reported_by": "model author"},
+        {"name": "SWE-bench Multilingual", "score": 52.0, "unit": "points", "details": "OpenHands, 256K context", "reported_by": "model author"},
+        {"name": "NL2Repo", "score": 27.2, "unit": "points", "details": "400K context, 48K output", "reported_by": "model author"},
+        {"name": "Claw-eval Avg", "score": 63.1, "unit": "points", "details": "256K context", "reported_by": "model author"}
+      ],
+      "sources": [
+        "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B"
+      ],
+      "verified_on": "2026-07-23"
+    }
+  ]
+}
