@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "last_verified": "2026-07-23",
+  "last_verified": "2026-07-24",
   "score_policy": "Scores are author-reported unless verification is explicitly stated. Harnesses and settings may differ.",
   "agents": [
     {
@@ -293,6 +293,37 @@
         "https://huggingface.co/Nanbeige/Nanbeige4.2-3B-Base"
       ],
       "verified_on": "2026-07-23"
+    },
+    {
+      "id": "kwaipilot-kat-coder-v2.5-dev",
+      "name": "KAT-Coder-V2.5-Dev",
+      "organization": "Kwaipilot",
+      "url": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev",
+      "availability": "open weights",
+      "license": "Apache-2.0",
+      "architecture": "Qwen3.6-35B-A3B-based Mixture-of-Experts",
+      "parameters_total_b": 35,
+      "parameters_active_b": 3,
+      "context_tokens": 262144,
+      "languages": ["Chinese", "English"],
+      "modality_note": "The open-weight release contains language-model weights only and operates as a text-only model.",
+      "focus": ["agentic coding", "terminal tasks", "tool use", "long-horizon software engineering"],
+      "features": ["thinking and non-thinking modes", "historical thinking-trace preservation", "structured tool calls", "Token-in-Token-out consistency", "Truncated Importance Sampling", "hierarchical execution-feedback rewards", "YaRN context extension"],
+      "benchmarks": [
+        {"name": "SWE-bench Verified", "score": 69.40, "unit": "points", "details": "Claude Code 2.1.195, pass@1, 256K context", "reported_by": "model author"},
+        {"name": "SWE-bench Multilingual", "score": 63.00, "unit": "points", "details": "Claude Code 2.1.195, pass@1, 256K context", "reported_by": "model author"},
+        {"name": "SWE-bench Pro", "score": 45.96, "unit": "points", "details": "Claude Code 2.1.195, pass@1, 256K context", "reported_by": "model author"},
+        {"name": "Terminal-Bench 2.1", "score": 41.02, "unit": "points", "details": "Average of Terminus-2 and Claude Code harnesses; per-harness scores 32.60 and 49.44; pass@1; 256K context", "reported_by": "model author"},
+        {"name": "PinchBench", "score": 93.43, "unit": "points", "details": "OpenClaw 2026.3.13, pass@1, 256K context", "reported_by": "model author"},
+        {"name": "SciCode", "score": 44.20, "unit": "points", "details": "pass@1, 256K context", "reported_by": "model author"},
+        {"name": "KAT-Code-Bench", "score": 46.21, "unit": "points", "details": "Claude Code 2.1.195, pass@1, 256K context; author benchmark", "reported_by": "model author"}
+      ],
+      "evaluation_notes": "All table metrics were reproduced in-house by the model author under a unified pipeline. Each model was normally tested once, with retests only for obvious errors.",
+      "sources": [
+        "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev",
+        "https://arxiv.org/abs/2607.05471"
+      ],
+      "verified_on": "2026-07-24"
     }
   ]
 }

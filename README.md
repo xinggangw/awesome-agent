@@ -20,6 +20,7 @@
 | [Macaron-V1](https://macaron.im/mindlab/research/introducing-macaron-v1) | 开放权重；许可证以模型仓库为准 | Venti 748B；Tall 50B | 未在本页统一列示 | 通用 Agent、个人智能、代码、生成式 UI | Venti：SWE Verified 85.6；TerminalBench 2.1 87.6；DeepSWE 58.4；UI4ABench 87.8 |
 | [Holo3.1](https://hcompany.ai/holo3.1) | 开放权重；Apache-2.0 | 0.8B / 4B / 9B / 35B-A3B | 未在本页统一列示 | Web、桌面与移动端 Computer Use | 35B-A3B：OSWorld 80.0；AndroidWorld 79.3；ScreenSpot-Pro 71.5；OSWorld-G 78.8 |
 | [Nanbeige4.2-3B](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) | 开放权重；Apache-2.0 | 4B total / 3B non-embedding | 262,144 | 本地个人助理、工具调用、办公与代码 Agent | SWE-bench Verified 63.6；Pro 46.9；Terminal-Bench 2.0 44.1；Pinch-Bench-V2 74.7 |
+| [KAT-Coder-V2.5-Dev](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev) | 开放权重；Apache-2.0 | 35B MoE / 3B active | 262,144 | Agentic coding、终端任务、工具调用 | SWE-bench Verified 69.40；Multilingual 63.00；Pro 45.96；Terminal-Bench 2.1 41.02 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -187,6 +188,26 @@ H Company 发布的 Computer Use VLM 家族，基于 Qwen 3.5 系列，覆盖 We
 
 来源：[模型卡](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) · [基础模型](https://huggingface.co/Nanbeige/Nanbeige4.2-3B-Base)
 
+### KAT-Coder-V2.5-Dev
+
+Kwaipilot 发布的中英双语 Agentic Coding 模型，基于 Qwen3.6-35B-A3B 继续训练，总参数 35B、每个 token 激活约 3B 参数，原生上下文长度为 262,144 tokens。开放版本只包含语言模型权重，不含视觉塔或其他多模态组件，因此实际运行是纯文本模型。官方支持 thinking、non-thinking、历史 thinking trace 保留和结构化工具调用，并提供 SGLang、vLLM、KTransformers 与 Transformers 的部署方法。
+
+模型先使用 127K 条样本进行监督微调，再进入强化学习。RL 训练采用 rollout 与训练 token 一致性、截断重要性采样、经过检查的 sandbox 和 verifier，以及基于 harness 执行反馈的分层奖励。针对 Qwen3.6 在训练中出现的大量并行工具调用、失败调用、空工具块和重复输出，项目方又加入了专门惩罚；模型卡报告异常工具标签比例从 9.34% 降至 0.28%，单轮连续重复从 0.34% 降至 0。
+
+| Benchmark | Score | 评测配置摘要 |
+|---|---:|---|
+| SWE-bench Verified | 69.40 | Claude Code 2.1.195；pass@1；256K |
+| SWE-bench Multilingual | 63.00 | Claude Code 2.1.195；pass@1；256K |
+| SWE-bench Pro | 45.96 | Claude Code 2.1.195；pass@1；256K |
+| Terminal-Bench 2.1 | 41.02 | Terminus-2 与 Claude Code 平均；单项 32.60 / 49.44 |
+| PinchBench | 93.43 | OpenClaw 2026.3.13；pass@1；256K |
+| SciCode | 44.20 | pass@1；256K |
+| KAT-Code-Bench | 46.21 | Claude Code 2.1.195；pass@1；项目方评测 |
+
+表中成绩均由项目方下载公开权重后，在自建的统一流水线中复测；每个模型通常只运行一次，不是独立第三方复现。SWE-bench 系列和 KAT-Code-Bench 使用 `temperature=1.0`、`top_p=0.95`，Terminal-Bench 2.1 使用 `temperature=0.7`、`top_p=1.0`。原生 256K 之外可使用 YaRN 扩展上下文，但扩展后的效果不等同于原生长上下文能力。
+
+来源：[模型卡](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev) · [技术报告](https://arxiv.org/abs/2607.05471)
+
 ## 收录原则
 
 - 优先收录开放权重、开源代码或提供可复现实验材料的 Agent 模型。
@@ -199,7 +220,7 @@ H Company 发布的 Computer Use VLM 家族，基于 Qwen 3.5 系列，覆盖 We
 
 `data/agents.json` 保存适合程序读取的模型信息。后续可以据此生成网页、筛选表或定期检查榜单变化。
 
-最后核对：2026-07-23。
+最后核对：2026-07-24。
 
 ## License
 
