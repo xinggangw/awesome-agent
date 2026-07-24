@@ -324,6 +324,200 @@
         "https://arxiv.org/abs/2607.05471"
       ],
       "verified_on": "2026-07-24"
+    },
+    {
+      "id": "osu-nlp-group-quest",
+      "name": "QUEST",
+      "organization": "Ohio State University NLP Group",
+      "url": "https://github.com/OSU-NLP-Group/QUEST",
+      "availability": "open weights, open-source code, open data, and open training scripts",
+      "license": "Apache-2.0 flagship model; MIT code repository",
+      "architecture": "Deep research agent family based on Qwen dense and MoE models",
+      "variants": [
+        {
+          "name": "QUEST-2B",
+          "parameters_total_b": 2,
+          "architecture": "Qwen3.5 dense",
+          "training_stage": "SFT",
+          "url": "https://huggingface.co/osunlp/QUEST-2B",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 28.0, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 8.8, "metric": "avg@3"},
+            {"name": "HLE", "score": 30.3, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 21.0, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 52.6, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 40.9, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 72.8, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 57.4, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-4B",
+          "nominal_size_b": 4,
+          "parameters_total_b": 5,
+          "architecture": "Qwen3.5 dense",
+          "training_stage": "SFT",
+          "url": "https://huggingface.co/osunlp/QUEST-4B",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 40.0, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 24.3, "metric": "avg@3"},
+            {"name": "HLE", "score": 36.2, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 22.0, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 52.1, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 55.0, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 77.7, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 62.1, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-9B",
+          "parameters_total_b": 9,
+          "architecture": "Qwen3.5 dense",
+          "training_stage": "SFT",
+          "url": "https://huggingface.co/osunlp/QUEST-9B",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 45.4, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 24.4, "metric": "avg@3"},
+            {"name": "HLE", "score": 36.9, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 32.6, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 55.6, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 58.5, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 78.6, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 63.5, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-30B-SFT",
+          "parameters_total_b": 31,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3-30B-A3B",
+          "training_stage": "SFT",
+          "evaluation_note": "The model card states that this checkpoint was not benchmarked.",
+          "url": "https://huggingface.co/osunlp/QUEST-30B-SFT"
+        },
+        {
+          "name": "QUEST-30B-MT-Plus-SFT",
+          "parameters_total_b": 31,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3-30B-A3B",
+          "training_stage": "MT+SFT",
+          "evaluation_note": "The model card states that this checkpoint was not benchmarked.",
+          "url": "https://huggingface.co/osunlp/QUEST-30B-MT-Plus-SFT"
+        },
+        {
+          "name": "QUEST-30B-RL",
+          "parameters_total_b": 31,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3-30B-A3B",
+          "training_stage": "MT+SFT+RL",
+          "url": "https://huggingface.co/osunlp/QUEST-30B-RL",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 37.0, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 28.6, "metric": "avg@3"},
+            {"name": "HLE", "score": 24.6, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 45.3, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 48.2, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 54.2, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 69.0, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 74.1, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-35B-SFT",
+          "parameters_total_b": 35,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3.5-35B-A3B",
+          "training_stage": "SFT",
+          "url": "https://huggingface.co/osunlp/QUEST-35B-SFT",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 45.1, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 26.5, "metric": "avg@3"},
+            {"name": "HLE", "score": 39.49, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 36.35, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 57.9, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 61.1, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 83.5, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 64.69, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-35B-MT-Plus-SFT",
+          "parameters_total_b": 35,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3.5-35B-A3B",
+          "training_stage": "MT+SFT",
+          "url": "https://huggingface.co/osunlp/QUEST-35B-MT-Plus-SFT",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 45.5, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 29.9, "metric": "avg@3"},
+            {"name": "HLE", "score": 39.74, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 39.72, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 58.6, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 62.5, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 83.17, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 65.47, "metric": "avg@3"}
+          ]
+        },
+        {
+          "name": "QUEST-35B-RL",
+          "parameters_total_b": 35,
+          "parameters_active_b": 3,
+          "base_model": "Qwen3.5-35B-A3B",
+          "training_stage": "MT+SFT+RL",
+          "url": "https://huggingface.co/osunlp/QUEST-35B-RL",
+          "benchmarks": [
+            {"name": "BrowseComp", "score": 45.5, "metric": "avg@3"},
+            {"name": "Mind2Web 2", "score": 30.7, "metric": "avg@3"},
+            {"name": "HLE", "score": 37.9, "metric": "avg@3"},
+            {"name": "DeepResearch Bench", "score": 48.2, "metric": "avg@3"},
+            {"name": "BrowseComp-Plus", "score": 61.0, "metric": "avg@3"},
+            {"name": "WideSearch", "score": 64.5, "metric": "Item F1 avg@4"},
+            {"name": "GAIA", "score": 80.8, "metric": "avg@3"},
+            {"name": "LiveResearchBench", "score": 68.2, "metric": "avg@3"}
+          ]
+        }
+      ],
+      "focus": ["deep research", "long-horizon search", "fact seeking", "citation grounding", "report synthesis"],
+      "features": ["rubric-tree task synthesis", "fully synthetic verifiable tasks", "structured context management", "mid-training plus SFT plus RL", "citation fact-checking rewards", "search, scholar, visit, Python, and memory tools"],
+      "benchmark_variant": "QUEST-35B-RL",
+      "benchmarks": [
+        {"name": "BrowseComp", "score": 45.5, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "Mind2Web 2", "score": 30.7, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "HLE", "score": 37.9, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "DeepResearch Bench", "score": 48.2, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "BrowseComp-Plus", "score": 61.0, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "WideSearch", "score": 64.5, "unit": "points", "details": "Item F1 avg@4", "reported_by": "model author"},
+        {"name": "GAIA", "score": 80.8, "unit": "points", "details": "avg@3", "reported_by": "model author"},
+        {"name": "LiveResearchBench", "score": 68.2, "unit": "points", "details": "avg@3", "reported_by": "model author"}
+      ],
+      "training_data": {
+        "synthetic_tasks_approx": 8000,
+        "mid_training": [
+          {"type": "context summarization", "tasks": 309346},
+          {"type": "relevant information extraction", "tasks": 1052663}
+        ],
+        "sft": [
+          {"type": "objective", "tasks": 5070, "trajectories": 19435, "sessions": 39861},
+          {"type": "open-ended", "tasks": 1958, "trajectories": 4485, "sessions": 11903}
+        ],
+        "rl": [
+          {"type": "objective", "tasks": 864},
+          {"type": "open-ended", "tasks": 269}
+        ]
+      },
+      "sources": [
+        "https://github.com/OSU-NLP-Group/QUEST",
+        "https://osu-nlp-group.github.io/QUEST/",
+        "https://huggingface.co/osunlp/QUEST-2B",
+        "https://huggingface.co/osunlp/QUEST-4B",
+        "https://huggingface.co/osunlp/QUEST-9B",
+        "https://huggingface.co/osunlp/QUEST-30B-RL",
+        "https://huggingface.co/osunlp/QUEST-35B-SFT",
+        "https://huggingface.co/osunlp/QUEST-35B-MT-Plus-SFT",
+        "https://huggingface.co/osunlp/QUEST-35B-RL",
+        "https://arxiv.org/abs/2605.24218"
+      ],
+      "verified_on": "2026-07-24"
     }
   ]
 }

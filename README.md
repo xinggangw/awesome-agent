@@ -21,6 +21,7 @@
 | [Holo3.1](https://hcompany.ai/holo3.1) | 开放权重；Apache-2.0 | 0.8B / 4B / 9B / 35B-A3B | 未在本页统一列示 | Web、桌面与移动端 Computer Use | 35B-A3B：OSWorld 80.0；AndroidWorld 79.3；ScreenSpot-Pro 71.5；OSWorld-G 78.8 |
 | [Nanbeige4.2-3B](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) | 开放权重；Apache-2.0 | 4B total / 3B non-embedding | 262,144 | 本地个人助理、工具调用、办公与代码 Agent | SWE-bench Verified 63.6；Pro 46.9；Terminal-Bench 2.0 44.1；Pinch-Bench-V2 74.7 |
 | [KAT-Coder-V2.5-Dev](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev) | 开放权重；Apache-2.0 | 35B MoE / 3B active | 262,144 | Agentic coding、终端任务、工具调用 | SWE-bench Verified 69.40；Multilingual 63.00；Pro 45.96；Terminal-Bench 2.1 41.02 |
+| [QUEST](https://github.com/OSU-NLP-Group/QUEST) | 模型开放权重；代码、数据与训练脚本开放；模型 Apache-2.0 / 代码 MIT | 2B–35B；旗舰 35B-A3B | 未在本页统一列示 | Deep Research、长程搜索、引用与报告生成 | 35B-RL：BrowseComp 45.5；GAIA 80.8；DeepResearch Bench 48.2；LiveResearchBench 68.2 |
 
 “上下文”一栏区分模型架构上限和项目方公开的推荐服务配置；未能从首要来源确认时不作推测。
 
@@ -207,6 +208,55 @@ Kwaipilot 发布的中英双语 Agentic Coding 模型，基于 Qwen3.6-35B-A3B �
 表中成绩均由项目方下载公开权重后，在自建的统一流水线中复测；每个模型通常只运行一次，不是独立第三方复现。SWE-bench 系列和 KAT-Code-Bench 使用 `temperature=1.0`、`top_p=0.95`，Terminal-Bench 2.1 使用 `temperature=0.7`、`top_p=1.0`。原生 256K 之外可使用 YaRN 扩展上下文，但扩展后的效果不等同于原生长上下文能力。
 
 来源：[模型卡](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev) · [技术报告](https://arxiv.org/abs/2607.05471)
+
+### QUEST
+
+Ohio State University NLP Group 发布的通用 Deep Research Agent 系列，覆盖 2B、4B、9B、30B 和 35B 多种规模。旗舰 QUEST-35B-RL 基于 Qwen3.5-35B-A3B，依次经过 mid-training、监督微调和强化学习。项目不仅提供模型权重，还公开训练数据、数据生成流程、推理与评测代码以及训练脚本；代码仓库采用 MIT License，QUEST-35B-RL 模型采用 Apache-2.0。
+
+QUEST 用 rubric tree 表示每项研究任务的事实、约束、引用、完整性和可读性要求，并据此生成无需人工标注的可验证训练任务。长程研究过程中，context condenser 会把历史整理为结构化状态，区分可信事实、待验证线索和不可信内容，模型随后从压缩状态继续搜索。SFT 使用通过 rubric 筛选的完整工具调用轨迹；RL 同时使用任务完成奖励和引用事实核查奖励，降低无依据引用。
+
+公开 checkpoint 的规模和训练阶段如下。QUEST-4B 的 Hugging Face 仓库显示实际约 5B 参数，QUEST-30B 系列显示约 31B；表中保留项目名称，同时单列实际规模。
+
+| Checkpoint | 实际规模 | 基座/结构 | 训练阶段 |
+|---|---:|---|---|
+| [QUEST-2B](https://huggingface.co/osunlp/QUEST-2B) | 2B | Qwen3.5 dense | SFT |
+| [QUEST-4B](https://huggingface.co/osunlp/QUEST-4B) | 5B | Qwen3.5 dense | SFT |
+| [QUEST-9B](https://huggingface.co/osunlp/QUEST-9B) | 9B | Qwen3.5 dense | SFT |
+| [QUEST-30B-SFT](https://huggingface.co/osunlp/QUEST-30B-SFT) | 31B-A3B | Qwen3-30B-A3B MoE | SFT；未发布评测 |
+| [QUEST-30B-MT+SFT](https://huggingface.co/osunlp/QUEST-30B-MT-Plus-SFT) | 31B-A3B | Qwen3-30B-A3B MoE | MT + SFT；未发布评测 |
+| [QUEST-30B-RL](https://huggingface.co/osunlp/QUEST-30B-RL) | 31B-A3B | Qwen3-30B-A3B MoE | MT + SFT + RL |
+| [QUEST-35B-SFT](https://huggingface.co/osunlp/QUEST-35B-SFT) | 35B-A3B | Qwen3.5-35B-A3B MoE | SFT |
+| [QUEST-35B-MT+SFT](https://huggingface.co/osunlp/QUEST-35B-MT-Plus-SFT) | 35B-A3B | Qwen3.5-35B-A3B MoE | MT + SFT |
+| [QUEST-35B-RL](https://huggingface.co/osunlp/QUEST-35B-RL) | 35B-A3B | Qwen3.5-35B-A3B MoE | MT + SFT + RL |
+
+各模型卡公布的跨规模结果如下。BC、M2W2、HLE、DRB、BC+、GAIA 和 LRB 使用 avg@3；WS 使用 Item F1 avg@4。
+
+| Checkpoint | BC | M2W2 | HLE | DRB | BC+ | WS | GAIA | LRB |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| QUEST-2B SFT | 28.0 | 8.8 | 30.3 | 21.0 | 52.6 | 40.9 | 72.8 | 57.4 |
+| QUEST-4B SFT | 40.0 | 24.3 | 36.2 | 22.0 | 52.1 | 55.0 | 77.7 | 62.1 |
+| QUEST-9B SFT | 45.4 | 24.4 | 36.9 | 32.6 | 55.6 | 58.5 | 78.6 | 63.5 |
+| QUEST-30B RL | 37.0 | 28.6 | 24.6 | 45.3 | 48.2 | 54.2 | 69.0 | 74.1 |
+| QUEST-35B SFT | 45.1 | 26.5 | 39.49 | 36.35 | 57.9 | 61.1 | 83.5 | 64.69 |
+| QUEST-35B MT+SFT | 45.5 | 29.9 | 39.74 | 39.72 | 58.6 | 62.5 | 83.17 | 65.47 |
+| QUEST-35B RL | 45.5 | 30.7 | 37.9 | 48.2 | 61.0 | 64.5 | 80.8 | 68.2 |
+
+缩写：BC = BrowseComp，M2W2 = Mind2Web 2，DRB = DeepResearch Bench，BC+ = BrowseComp-Plus，WS = WideSearch，LRB = LiveResearchBench。小模型只经过 SFT；30B 和 35B RL 模型增加了 MT 与 RL，因此上表既反映参数规模差异，也包含训练阶段差异。RL 明显改善 DRB、LRB 等开放式报告任务，但 35B 的 HLE 和 GAIA 分数低于 MT+SFT，符合项目方对 objective tasks 优先使用 MT+SFT checkpoint 的建议。
+
+训练数据也已公开：
+
+| 阶段 | 数据类型 | Tasks | Trajectories | Sessions |
+|---|---|---:|---:|---:|
+| MT | Context Summarization | 309,346 | — | — |
+| MT | Relevant Info Extraction | 1,052,663 | — | — |
+| SFT | Objective | 5,070 | 19,435 | 39,861 |
+| SFT | Open-ended | 1,958 | 4,485 | 11,903 |
+| RL | Objective | 864 | — | — |
+| RL | Open-ended | 269 | — | — |
+
+约 8K 指的是 SFT 与 RL 的合成研究任务规模，不包含两项 MT 辅助任务。上述成绩来自各 checkpoint 的官方模型卡和论文，尚未由本仓库独立复现。
+
+来源：[代码仓库](https://github.com/OSU-NLP-Group/QUEST) · [项目主页](https://osu-nlp-group.github.io/QUEST/) · [QUEST-2B](https://huggingface.co/osunlp/QUEST-2B) · [QUEST-4B](https://huggingface.co/osunlp/QUEST-4B) · [QUEST-9B](https://huggingface.co/osunlp/QUEST-9B) · [QUEST-30B-RL](https://huggingface.co/osunlp/QUEST-30B-RL) · [QUEST-35B-RL](https://huggingface.co/osunlp/QUEST-35B-RL) · [论文](https://arxiv.org/abs/2605.24218)
 
 ## 收录原则
 
